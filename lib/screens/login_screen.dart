@@ -41,7 +41,7 @@ class _Login_screenState extends State<Login_screen> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: _title()),
-                  Container(
+              Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: TextButton(
@@ -49,14 +49,13 @@ class _Login_screenState extends State<Login_screen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>LoginWithGmail()));
+                              builder: (context) => LoginWithGmail()));
                     },
                     child: const Text(
                       'Login with Gmail',
                       style: TextStyle(fontSize: 20),
                     ),
                   )),
-                  
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
@@ -98,13 +97,35 @@ class _Login_screenState extends State<Login_screen> {
               TextButton(
                 onPressed: () {
                   //forgot password screen
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        TextEditingController resetcontroller =
+                            TextEditingController();
+                        return AlertDialog(
+                          content: TextField(
+                            controller: resetcontroller,
+                          ),
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  if (resetcontroller.text != "") {
+                                    FirebaseAuth.instance
+                                        .sendPasswordResetEmail(
+                                            email: resetcontroller.text);
+                                  }
+                                },
+                                child: Text("send reset email"))
+                          ],
+                        );
+                      });
                 },
                 child: const Text(
                   'Forgot Password',
                   style: TextStyle(
                       color: Color(0xffe46b10), fontStyle: FontStyle.italic),
                 ),
-              ),
+                ),
               Container(
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
