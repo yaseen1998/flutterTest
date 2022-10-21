@@ -13,19 +13,19 @@ class _StartState extends State<Start> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/logo.png"),
-            scale: 4,
-            alignment: Alignment.topRight,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 30, right: 10, left: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("images/logo.png"),
+              scale: 4,
+              alignment: Alignment.topRight,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(30),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.only(top: 80),
               child: Column(
                 children: [
                   Container(
