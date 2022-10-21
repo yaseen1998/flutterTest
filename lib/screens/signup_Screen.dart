@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
             ),
             Text('Back',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500))
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500))
           ],
         ),
       ),
@@ -64,10 +64,6 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontSize: 20),
-          ),
           SizedBox(
             height: 10,
           ),
@@ -75,7 +71,9 @@ class _SignUpPageState extends State<SignUpPage> {
             controller: controller,
             obscureText: isPassword,
             decoration: InputDecoration(
-                border: OutlineInputBorder(gapPadding: 4),
+                border: OutlineInputBorder(),
+                labelText: title,
+                labelStyle: TextStyle(fontSize: 20),
                 fillColor: Color(0xfff3f3f4),
                 filled: true),
           )
@@ -166,26 +164,26 @@ class _SignUpPageState extends State<SignUpPage> {
           }),
           text: 'Lt',
           style: TextStyle(
-              fontWeight: FontWeight.w500,
-              letterSpacing: 5,
-              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 7,
+              fontSize: 38,
               color: Color(0xff2b5eaf)),
           children: [
             TextSpan(
               text: 'uc Stu',
               style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 5,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 7,
                   color: Colors.black,
-                  fontSize: 40),
+                  fontSize: 38),
             ),
             TextSpan(
               text: 'dents',
               style: TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 color: Color(0xff2b5eaf),
-                fontSize: 40,
-                letterSpacing: 5,
+                fontSize: 38,
+                letterSpacing: 7,
               ),
             ),
           ]),
@@ -225,21 +223,34 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .2),
+                    SizedBox(height: 150),
                     Padding(
-                      padding: const EdgeInsets.only(top: 0),
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 2, left: 2),
                       child: _title(),
                     ),
                     SizedBox(
                       height: 25,
                     ),
-                    _emailPasswordWidget(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 10, left: 10),
+                      child: _emailPasswordWidget(),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    _submitButton(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 20, left: 20),
+                      child: _submitButton(),
+                    ),
                     SizedBox(height: 25),
-                    _loginAccountLabel(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 20, left: 20),
+                      child: _loginAccountLabel(),
+                    ),
                   ],
                 ),
               ),

@@ -43,28 +43,28 @@ class _StartState extends State<Start> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   Text(
                     "Contact with classmates",
                     style: TextStyle(
                       fontSize: 24,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       color: Colors.black,
-                      letterSpacing: 2,
+                      letterSpacing: 3,
                     ),
                   ),
                   Text(
                     "and check your schedule",
                     style: TextStyle(
                       fontSize: 24,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       color: Colors.black,
-                      letterSpacing: 2,
+                      letterSpacing: 3,
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -85,7 +85,7 @@ class _StartState extends State<Start> {
                       },
                       child: Text(
                         "Get started !",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, letterSpacing: 3),
                       ))
                 ],
               ),
