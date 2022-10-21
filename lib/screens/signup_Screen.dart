@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 
 import 'login_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key, this.title}) : super(key: key);
@@ -16,9 +15,27 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController username = TextEditingController();
-  TextEditingController userid = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  CollectionReference user = FirebaseFirestore.instance.collection('user');
+
+  Future<void> addUser() async {
+    var auth = FirebaseAuth.instance;
+    UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+    // Call the user's CollectionReference to add a new user
+    return user
+        .doc(userCredential.user?.uid)
+        .set({
+          'username': nameController.text, // John Doe
+          'email': emailController.text, // John Doe
+          'password': passwordController.text, // Stokes and Sons
+          'isAdmin': false,
+        })
+        .then((value) => print("user Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
 
   Widget _backButton() {
     return InkWell(
@@ -41,21 +58,40 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  Widget _entryField(String title, controller, {bool isPassword = false}) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+              controller: controller,
+              obscureText: isPassword,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Color(0xfff3f3f4),
+                  filled: true))
+        ],
+      ),
+    );
+  }
+
   Widget _submitButton() {
-    return InkWell(
-      onTap: () {
-        try {
-          var authenticationobject = FirebaseAuth.instance;
-          UserCredential myuser =
-              authenticationobject.createUserWithEmailAndPassword(
-                  email: username.text,
-                  password: password.text) as UserCredential;
-        } catch (e) {}
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return Login_screen();
-          },
-        ));
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.transparent,
+        onPrimary: Colors.white,
+        shadowColor: Colors.transparent,
+      ),
+      onPressed: () {
+        addUser();
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -150,27 +186,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        TextField(
-            controller: username,
-            decoration: InputDecoration(
-                hintText: "Username",
-                border: OutlineInputBorder(borderSide: BorderSide(width: 2)))),
-        SizedBox(
-          height: 20,
-        ),
-        TextField(
-            controller: userid,
-            decoration: InputDecoration(
-                hintText: "User id",
-                border: OutlineInputBorder(borderSide: BorderSide(width: 2)))),
-        SizedBox(
-          height: 20,
-        ),
-        TextField(
-            controller: password,
-            decoration: InputDecoration(
-                hintText: "password",
-                border: OutlineInputBorder(borderSide: BorderSide(width: 2)))),
+        _entryField("Username", nameController),
+        _entryField("Email id", emailController),
+        _entryField("Password", passwordController, isPassword: true),
       ],
     );
   }

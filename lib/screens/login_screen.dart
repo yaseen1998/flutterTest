@@ -1,8 +1,7 @@
-import 'package:citycafe_app/screens/home.dart';
+import 'package:citycafe_app/screens/LoginWithGmail.dart';
 import 'package:citycafe_app/screens/signup_Screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
@@ -15,6 +14,21 @@ class _Login_screenState extends State<Login_screen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  Future<void> Login() async {
+    try {
+      var login = FirebaseAuth.instance;
+      UserCredential userCredential = await login.signInWithEmailAndPassword(
+          email: nameController.text, password: passwordController.text);
+      // ignore: use_build_context_synchronously
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => Firestore()));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.toString()),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +40,22 @@ class _Login_screenState extends State<Login_screen> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: _title()),
+                  Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>LoginWithGmail()));
+                    },
+                    child: const Text(
+                      'Login with Gmail',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  )),
+                  
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
@@ -81,24 +111,8 @@ class _Login_screenState extends State<Login_screen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xffe46b10)),
                     child: const Text('Login'),
-                    onPressed: () async {
-                      try {
-                        var authenticationobject = FirebaseAuth.instance;
-                        UserCredential myUser = await authenticationobject
-                            .signInWithEmailAndPassword(
-                                email: nameController.text,
-                                password: passwordController.text);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return home();
-                          },
-                        ));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("added successfully")));
-                      } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("sorry there is an error")));
-                      }
+                    onPressed: () {
+                      Login();
                     },
                   )),
               Row(
