@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "286679303219",
+    "project_id": "lab-app-31aaf",
+    "storage_bucket": "lab-app-31aaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286679303219:android:5e9c257630e39929fe0f46",
+        "android_client_info": {
+          "package_name": "com.example.citycafe_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286679303219-7k71t91892abui44f0kuv4cbc9anqdha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvXe-nDLoKx5iHitRhido4W9mjTDGUSlM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286679303219-7k71t91892abui44f0kuv4cbc9anqdha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
