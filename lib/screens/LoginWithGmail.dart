@@ -1,3 +1,4 @@
+import 'package:citycafe_app/screens/firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,10 +22,10 @@ class LoginWithGmail extends StatelessWidget {
           'isAdmin': false,
         });
       }
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => Firestore()),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Firestore()),
+      );
     }
 
     return Container(

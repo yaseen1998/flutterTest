@@ -1,4 +1,5 @@
 import 'package:citycafe_app/screens/LoginWithGmail.dart';
+import 'package:citycafe_app/screens/firestore.dart';
 import 'package:citycafe_app/screens/signup_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,8 +21,8 @@ class _Login_screenState extends State<Login_screen> {
       UserCredential userCredential = await login.signInWithEmailAndPassword(
           email: nameController.text, password: passwordController.text);
       // ignore: use_build_context_synchronously
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => Firestore()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Firestore()));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.toString()),
