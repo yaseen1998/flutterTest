@@ -43,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
         Navigator.pop(context);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Row(
           children: <Widget>[
             Container(
@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
             ),
             Text('Back',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500))
           ],
         ),
       ),
@@ -64,55 +64,57 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
           SizedBox(
             height: 10,
           ),
           TextField(
-              controller: controller,
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+            controller: controller,
+            obscureText: isPassword,
+            decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: title,
+                labelStyle: TextStyle(fontSize: 20),
+                fillColor: Color(0xfff3f3f4),
+                filled: true),
+          )
         ],
       ),
     );
   }
 
   Widget _submitButton() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.transparent,
-        onPrimary: Colors.white,
-        shadowColor: Colors.transparent,
-      ),
-      onPressed: () {
-        addUser();
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 15),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: Offset(2, 4),
-                  blurRadius: 5,
-                  spreadRadius: 2)
-            ],
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-        child: Text(
-          'Register Now',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.only(left: 30, right: 30),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.transparent,
+          onPrimary: Colors.white,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () {
+          addUser();
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(vertical: 15),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.grey.shade200,
+                    offset: Offset(2, 4),
+                    blurRadius: 5,
+                    spreadRadius: 2)
+              ],
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xff2b5eaf), Color(0xff2b5eaf)])),
+          child: Text(
+            'Register Now',
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
         ),
       ),
     );
@@ -125,15 +127,17 @@ class _SignUpPageState extends State<SignUpPage> {
             context, MaterialPageRoute(builder: (context) => Login_screen()));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.all(0),
         alignment: Alignment.bottomCenter,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               'Already have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
             SizedBox(
               width: 10,
@@ -141,9 +145,9 @@ class _SignUpPageState extends State<SignUpPage> {
             Text(
               'Login',
               style: TextStyle(
-                  color: Color(0xfff79c4f),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
+                color: Color(0xff2b5eaf),
+                fontSize: 20,
+              ),
             ),
           ],
         ),
@@ -152,44 +156,50 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _title() {
-    return Row(
-      children: [
-        Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("images/1.png"))),
-        ),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-              text: 'Lt',
+    return RichText(
+      softWrap: false,
+      text: TextSpan(
+          onEnter: ((event) {
+            print("123");
+          }),
+          text: 'Lt',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 7,
+              fontSize: 38,
+              color: Color(0xff2b5eaf)),
+          children: [
+            TextSpan(
+              text: 'uc Stu',
               style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xffe46b10)),
-              children: [
-                TextSpan(
-                  text: 'uc Stu',
-                  style: TextStyle(color: Colors.black, fontSize: 30),
-                ),
-                TextSpan(
-                  text: 'dents',
-                  style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
-                ),
-              ]),
-        ),
-      ],
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 7,
+                  color: Colors.black,
+                  fontSize: 38),
+            ),
+            TextSpan(
+              text: 'dents',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff2b5eaf),
+                fontSize: 38,
+                letterSpacing: 7,
+              ),
+            ),
+          ]),
     );
   }
 
   Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        _entryField("Username", nameController),
-        _entryField("Email id", emailController),
-        _entryField("Password", passwordController, isPassword: true),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: Column(
+        children: <Widget>[
+          _entryField("Username", nameController),
+          _entryField("Email id", emailController),
+          _entryField("Password", passwordController, isPassword: true),
+        ],
+      ),
     );
   }
 
@@ -213,18 +223,34 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _title(),
-                    SizedBox(
-                      height: 50,
+                    SizedBox(height: 150),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 2, left: 2),
+                      child: _title(),
                     ),
-                    _emailPasswordWidget(),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 10, left: 10),
+                      child: _emailPasswordWidget(),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    _submitButton(),
-                    SizedBox(height: height * .14),
-                    _loginAccountLabel(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 20, left: 20),
+                      child: _submitButton(),
+                    ),
+                    SizedBox(height: 25),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 20, left: 20),
+                      child: _loginAccountLabel(),
+                    ),
                   ],
                 ),
               ),

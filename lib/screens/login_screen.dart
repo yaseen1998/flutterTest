@@ -33,14 +33,16 @@ class _Login_screenState extends State<Login_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(30),
           child: ListView(
             children: <Widget>[
               Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.only(top: 25),
                   child: _title()),
+
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
@@ -57,43 +59,44 @@ class _Login_screenState extends State<Login_screen> {
                     ),
                   )),
               Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(10),
-                  child: const Text(
-                    'Sign in',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Color(0xffe46b10),
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold),
-                  )),
-              Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage("images/1.png"))),
+                padding: EdgeInsets.only(top: 50),
+                alignment: Alignment.center,
+                child: Image(
+                  image: AssetImage("images/7.png"),
+                  width: 300,
+                  height: 205,
+                ),
+              ),
+              SizedBox(
+                height: 15,
               ),
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
                   controller: nameController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'User Name',
+                    labelStyle: TextStyle(fontSize: 20),
                   ),
                 ),
+                height: 50,
               ),
+              SizedBox(height: 15),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                height: 50,
+                padding: const EdgeInsets.only(left: 40, right: 40),
                 child: TextField(
                   obscureText: true,
                   controller: passwordController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
+                    labelStyle: TextStyle(fontSize: 20),
                   ),
                 ),
               ),
+
               TextButton(
                 onPressed: () {
                   //forgot password screen
@@ -128,33 +131,87 @@ class _Login_screenState extends State<Login_screen> {
                 ),
               Container(
                   height: 50,
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  padding: const EdgeInsets.only(left: 40, right: 40),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xffe46b10)),
-                    child: const Text('Login'),
+                        backgroundColor: Color(0xff2b5eaf)),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(fontSize: 20),
+                    ),
                     onPressed: () {
                       Login();
                     },
                   )),
-              Row(
-                children: <Widget>[
-                  const Text('Does not have account?'),
-                  TextButton(
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(fontSize: 20),
+              TextButton(
+                onPressed: () {
+                  //forgot password screen
+                },
+                child: const Text(
+                  'Forgot Password ?',
+                  style: TextStyle(
+                    color: Color(0xff2b5eaf),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    const Text(
+                      'Does not have account?',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return SignUpPage();
-                        },
-                      ));
-                    },
-                  )
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
+                    TextButton(
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xff2b5eaf),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return SignUpPage();
+                          },
+                        ));
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+              ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    const Text(
+                      'you can Login with ',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    TextButton(
+                      child: const Text(
+                        'Gmail',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xff2b5eaf),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return LoginWithGmail();
+                          },
+                        ));
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
               ),
             ],
           )),
@@ -171,17 +228,23 @@ Widget _title() {
         }),
         text: 'Lt',
         style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: Color(0xffe46b10)),
+            fontWeight: FontWeight.w500,
+            letterSpacing: 5,
+            fontSize: 35,
+            color: Color(0xff2b5eaf)),
         children: [
           TextSpan(
             text: 'uc Stu',
-            style: TextStyle(color: Colors.black, fontSize: 30),
+            style:
+                TextStyle(letterSpacing: 5, color: Colors.black, fontSize: 35),
           ),
           TextSpan(
             text: 'dents',
-            style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+            style: TextStyle(
+              color: Color(0xff2b5eaf),
+              fontSize: 35,
+              letterSpacing: 5,
+            ),
           ),
         ]),
   );
