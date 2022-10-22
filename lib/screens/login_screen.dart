@@ -42,7 +42,6 @@ class _Login_screenState extends State<Login_screen> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.only(top: 25),
                   child: _title()),
-
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
@@ -59,7 +58,7 @@ class _Login_screenState extends State<Login_screen> {
                     ),
                   )),
               Container(
-                padding: EdgeInsets.only(top: 50),
+                padding: EdgeInsets.only(top: 20),
                 alignment: Alignment.center,
                 child: Image(
                   image: AssetImage("images/7.png"),
@@ -96,7 +95,6 @@ class _Login_screenState extends State<Login_screen> {
                   ),
                 ),
               ),
-
               TextButton(
                 onPressed: () {
                   //forgot password screen
@@ -128,7 +126,7 @@ class _Login_screenState extends State<Login_screen> {
                   style: TextStyle(
                       color: Color(0xffe46b10), fontStyle: FontStyle.italic),
                 ),
-                ),
+              ),
               Container(
                   height: 50,
                   padding: const EdgeInsets.only(left: 40, right: 40),
@@ -143,18 +141,18 @@ class _Login_screenState extends State<Login_screen> {
                       Login();
                     },
                   )),
-              TextButton(
-                onPressed: () {
-                  //forgot password screen
-                },
-                child: const Text(
-                  'Forgot Password ?',
-                  style: TextStyle(
-                    color: Color(0xff2b5eaf),
-                    fontSize: 18,
-                  ),
-                ),
-              ),
+              // // TextButton(
+              // //   onPressed: () {
+              // //     //forgot password screen
+              // //   },
+              // //   // child: const Text(
+              // //   //   'Forgot Password ?',
+              // //   //   style: TextStyle(
+              // //   //     color: Color(0xff2b5eaf),
+              // //   //     fontSize: 18,
+              // //   //   ),
+              // //   // ),
+              // ),
               Container(
                 child: Row(
                   children: <Widget>[
@@ -184,35 +182,35 @@ class _Login_screenState extends State<Login_screen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
               ),
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    const Text(
-                      'you can Login with ',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    TextButton(
-                      child: const Text(
-                        'Gmail',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Color(0xff2b5eaf),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return LoginWithGmail();
-                          },
-                        ));
-                      },
-                    )
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
-              ),
+              // Container(
+              //   child: Row(
+              //     children: <Widget>[
+              //       const Text(
+              //         'you can Login with ',
+              //         style: TextStyle(
+              //           fontSize: 20,
+              //         ),
+              //       ),
+              //       TextButton(
+              //         child: const Text(
+              //           'Gmail',
+              //           style: TextStyle(
+              //             fontSize: 20,
+              //             color: Color(0xff2b5eaf),
+              //           ),
+              //         ),
+              //         onPressed: () {
+              //           Navigator.push(context, MaterialPageRoute(
+              //             builder: (context) {
+              //               return LoginWithGmail();
+              //             },
+              //           ));
+              //         },
+              //       )
+              //     ],
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //   ),
+              // ),
             ],
           )),
     );
