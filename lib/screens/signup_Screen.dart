@@ -1,3 +1,4 @@
+import 'package:citycafe_app/screens/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -33,7 +34,8 @@ class _SignUpPageState extends State<SignUpPage> {
           'password': passwordController.text, // Stokes and Sons
           'isAdmin': false,
         })
-        .then((value) => print("user Added"))
+        .then((value) => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Firestore())))
         .catchError((error) => print("Failed to add user: $error"));
   }
 

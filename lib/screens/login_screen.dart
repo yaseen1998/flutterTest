@@ -1,6 +1,7 @@
 import 'package:citycafe_app/screens/LoginWithGmail.dart';
 import 'package:citycafe_app/screens/firestore.dart';
 import 'package:citycafe_app/screens/signup_Screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -14,6 +15,7 @@ class Login_screen extends StatefulWidget {
 class _Login_screenState extends State<Login_screen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+    CollectionReference user = FirebaseFirestore.instance.collection('user');
 
   Future<void> Login() async {
     try {
@@ -22,13 +24,31 @@ class _Login_screenState extends State<Login_screen> {
           email: nameController.text, password: passwordController.text);
       // ignore: use_build_context_synchronously
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Firestore()));
+          context, MaterialPageRoute(builder: (context) => const Firestore()));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.toString()),
       ));
     }
   }
+  Future<void> addUser() async {
+      var login = FirebaseAuth.instance;
+      UserCredential userCredential =
+          await login.signInWithPopup(GoogleAuthProvider());
+      // check if user document is exist
+      var userDoc = await user.doc(userCredential.user!.uid).get();
+      if (!userDoc.exists) {
+        // if not exist create new user document
+        await user.doc(userCredential.user!.uid).set({
+          'email': userCredential.user!.email,
+          'isAdmin': false,
+        });
+      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Firestore()),
+      );
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +67,7 @@ class _Login_screenState extends State<Login_screen> {
                   padding: const EdgeInsets.all(10),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginWithGmail()));
+                      addUser();
                     },
                     child: const Text(
                       'Login with Gmail',
@@ -58,15 +75,15 @@ class _Login_screenState extends State<Login_screen> {
                     ),
                   )),
               Container(
-                padding: EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 20),
                 alignment: Alignment.center,
-                child: Image(
+                child: const Image(
                   image: AssetImage("images/7.png"),
                   width: 300,
                   height: 205,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Container(
@@ -81,7 +98,7 @@ class _Login_screenState extends State<Login_screen> {
                 ),
                 height: 50,
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Container(
                 height: 50,
                 padding: const EdgeInsets.only(left: 40, right: 40),
@@ -116,7 +133,7 @@ class _Login_screenState extends State<Login_screen> {
                                             email: resetcontroller.text);
                                   }
                                 },
-                                child: Text("send reset email"))
+                                child: const Text("send reset email"))
                           ],
                         );
                       });
@@ -132,7 +149,7 @@ class _Login_screenState extends State<Login_screen> {
                   padding: const EdgeInsets.only(left: 40, right: 40),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff2b5eaf)),
+                        backgroundColor: const Color(0xff2b5eaf)),
                     child: const Text(
                       'Login',
                       style: TextStyle(fontSize: 20),
@@ -225,18 +242,18 @@ Widget _title() {
           print("123");
         }),
         text: 'Lt',
-        style: TextStyle(
+        style: const TextStyle(
             fontWeight: FontWeight.w500,
             letterSpacing: 5,
             fontSize: 35,
             color: Color(0xff2b5eaf)),
         children: [
-          TextSpan(
+          const TextSpan(
             text: 'uc Stu',
             style:
                 TextStyle(letterSpacing: 5, color: Colors.black, fontSize: 35),
           ),
-          TextSpan(
+          const TextSpan(
             text: 'dents',
             style: TextStyle(
               color: Color(0xff2b5eaf),
